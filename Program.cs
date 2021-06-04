@@ -6,7 +6,7 @@ namespace LB_3_Coordinate_Descent
     {
         static void Main(string[] args)
         {
-            double[] min = Optimize.minimize(func, 0, 0);
+            double[] min = Optimize.minimize(func, 10, -10);
             for (int i = 0; i < min.Length; i++)
             {
                 Console.WriteLine("x{0:F3} = {1:F3}", i + 1, min[i]);

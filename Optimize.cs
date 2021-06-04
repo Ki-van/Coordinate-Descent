@@ -12,23 +12,28 @@ namespace LB_3_Coordinate_Descent
 
         public delegate double dfunction(double[] vars);
         static dfunction func;
-        public static double[] minimize(dfunction function, params double[] vars)
+        public static double[] minimize(dfunction function, params double[] x)
         {
             func = function;
             double A;
-            double B = function(vars);
+            double B = function(x);
             int i = -1;
+            int pointNum = 1;
             do
             {
                 A = B;
-                i = (i + 1) % vars.Length;
+                i = (i + 1) % x.Length;
 
-                dichotomy(vars, i);
+                dichotomy(x, i);
 
-                B = func(vars);
+                B = func(x);
+                Console.WriteLine(String.Format("M{0} = ({1:F2}; {2:F2}), F = {3:F2}",
+                   pointNum, x[0], x[1], B));
+                pointNum++;
+
             } while (Math.Abs(A - B) > e);
 
-            return vars;
+            return x;
         }
 
 
